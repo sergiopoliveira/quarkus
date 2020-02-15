@@ -3,7 +3,6 @@ package org.acme.quickstart;
 import org.acme.quickstart.service.GreetingService;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
-import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -12,8 +11,11 @@ import javax.ws.rs.core.MediaType;
 @Path("/hello")
 public class GreetingResource {
 
-    @Inject
-    GreetingService service;
+    private GreetingService service;
+
+    public GreetingResource(GreetingService service) {
+        this.service = service;
+    }
 
     @GET
     @Produces(MediaType.TEXT_PLAIN)
